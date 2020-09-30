@@ -88,7 +88,7 @@ const Toolbox = () => {
             </Item>
           </Tooltip>
         </div>
-        <div ref={(ref) => create(ref, <Button />)}>
+        <div ref={(ref) => create(ref, <Button color="primary" />)}>
           <Tooltip title="Button" placement="right">
             <Item className="m-2 pb-2 cursor-pointer block" move>
               <ButtonSvg />

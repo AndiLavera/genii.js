@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { ChromePicker } from 'react-color';
 import { TextField, makeStyles, InputAdornment } from '@material-ui/core';
 
@@ -94,7 +94,7 @@ export const ToolbarTextInput = ({
               e.stopPropagation();
               setActive(false);
             }}
-          ></div>
+          />
           <ChromePicker
             color={value}
             onChange={(color: any) => {

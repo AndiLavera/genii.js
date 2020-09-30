@@ -1,67 +1,69 @@
-import React from 'react';
-import { UserComponent, useNode } from '@craftjs/core';
-import styled from 'styled-components';
-import cx from 'classnames';
-import { Text } from '../Text';
+// TODO: Add css styles
+import {
+  Button as MaterialButton,
+} from '@material-ui/core';
+import { useNode } from '@craftjs/core';
+
+// import { Text } from '../Text';
 import { ButtonSettings } from './ButtonSettings';
 
-type ButtonProps = {
-  background?: Record<'r' | 'g' | 'b' | 'a', number>;
-  color?: Record<'r' | 'g' | 'b' | 'a', number>;
-  buttonStyle?: string;
-  margin?: string[];
-  text?: string;
-  textComponent?: any;
+// type ButtonProps = {
+//   background?: Record<'r' | 'g' | 'b' | 'a', number>;
+//   color?: Record<'r' | 'g' | 'b' | 'a', number>;
+//   buttonStyle?: string;
+//   margin?: string[];
+//   text?: string;
+//   textComponent?: any;
+// };
+
+// const styles = (props: any) => {
+//   const { styleBackground, styleColor, styleMargin } = props;
+//   const style = {};
+
+//   style.margin = `${styleMargin[0]}px ${styleMargin[1]}px ${styleMargin[2]}px ${styleMargin[3]}px
+//   style.color = styleColor ? `rgba(${Object.values(styleColor)})` : '';
+//   style.background = styleBackground ? `rgba(${Object.values(styleBackground)})` : '';
+
+//   return style;
+// };
+
+const ButtonDefaultProps = {
+  size: 'small',
+  variant: 'contained',
+  color: 'primary',
+  text: 'Button',
+  disabled: 'false',
+  href: '',
+  // styleBackground: undefined,
+  // styleColor: undefined,
+  // styleMargin: ['0', '0', '0', '0'],
 };
 
-const StyledButton = styled.button<ButtonProps>`
-  background: ${(props) => (props.buttonStyle === 'full' ? `rgba(${Object.values(props.background)})` : 'transparent')};
-  border: 2px solid transparent;
-  border-color: ${(props) => (props.buttonStyle === 'outline' ? `rgba(${Object.values(props.background)})` : 'transparent')};
-  margin: ${({ margin }) => `${margin[0]}px ${margin[1]}px ${margin[2]}px ${margin[3]}px`};
-`;
-
-const Button: UserComponent<ButtonProps> = (props: any) => {
-  const { connectors: { connect } } = useNode((node) => ({
-    selected: node.events.selected,
-  }));
-
+const Button = (props: any) => {
   const {
-    text, textComponent, color, ...otherProps
+    color, size, variant, text, disabled, href,
   } = props;
+
+  const { connectors: { connect, drag } } = useNode();
+
   return (
-    <StyledButton
-      ref={connect}
-      className={cx([
-        'rounded w-full px-4 py-2',
-        {
-          'shadow-lg': props.buttonStyle === 'full',
-        },
-      ])}
-      {...otherProps}
+    <MaterialButton
+      ref={(ref) => connect(drag(ref))}
+      color={color}
+      size={size}
+      variant={variant}
+      disabled={!!(disabled === 'true')}
+      href={href}
+      // style={styles(props)}
     >
-      <Text {...textComponent} text={text} color={props.color} />
-    </StyledButton>
+      {text}
+    </MaterialButton>
   );
 };
 
 Button.craft = {
   displayName: 'Button',
-  props: {
-    background: {
-      r: 255, g: 255, b: 255, a: 0.5,
-    },
-    color: {
-      r: 92, g: 90, b: 90, a: 1,
-    },
-    buttonStyle: 'full',
-    text: 'Button',
-    margin: ['5', '0', '5', '0'],
-    textComponent: {
-      ...Text.craft.props,
-      textAlign: 'center',
-    },
-  },
+  props: ButtonDefaultProps,
   related: {
     toolbar: ButtonSettings,
   },

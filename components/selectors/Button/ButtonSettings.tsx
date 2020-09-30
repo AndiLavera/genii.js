@@ -1,23 +1,25 @@
 import React from 'react';
 import { ToolbarSection, ToolbarItem } from '../../editor';
 import { ToolbarRadio } from '../../editor/Toolbar/ToolbarRadio';
+import { ToolbarTextInput } from '../../editor/Toolbar/ToolbarTextInput';
 
 const ButtonSettings = () => (
   <>
-    <ToolbarSection
+    {/* TODO: Add css styles */}
+    {/* <ToolbarSection
       title="Colors"
-      props={['background', 'color']}
-      summary={({ background, color }: any) => (
+      props={['styleBackground', 'styleColor']}
+      summary={({ styleBackground, styleColor }: any) => (
         <div className="flex flex-row-reverse">
           <div
             style={{
               background:
-                    background && `rgba(${Object.values(background)})`,
+              styleBackground && `rgba(${Object.values(styleBackground)})`,
             }}
             className="shadow-md flex-end w-6 h-6 text-center flex items-center rounded-full bg-black"
           >
             <p
-              style={{ color: color && `rgba(${Object.values(color)})` }}
+              style={{ color: styleColor && `rgba(${Object.values(styleColor)})` }}
               className="text-white w-full text-center"
             >
               T
@@ -28,28 +30,59 @@ const ButtonSettings = () => (
     >
       <ToolbarItem
         full
-        propKey="background"
+        propKey="styleBackground"
         type="bg"
         label="Background"
       />
-      <ToolbarItem full propKey="color" type="color" label="Text" />
+      <ToolbarItem full propKey="styleColor" type="color" label="Text" />
     </ToolbarSection>
     <ToolbarSection
       title="Margin"
-      props={['margin']}
-      summary={({ margin }: any) => `${margin[0] || 0}px ${margin[1] || 0}px ${margin[2] || 0}px ${
-        margin[3] || 0
+      props={['styleMargin']}
+      summary={({ styleMargin }: any) => `${styleMargin[0] || 0}px ${styleMargin[1] || 0}px ${styleMargin[2] || 0}px ${
+        styleMargin[3] || 0
       }px`}
     >
-      <ToolbarItem propKey="margin" index={0} type="slider" label="Top" />
-      <ToolbarItem propKey="margin" index={1} type="slider" label="Right" />
-      <ToolbarItem propKey="margin" index={2} type="slider" label="Bottom" />
-      <ToolbarItem propKey="margin" index={3} type="slider" label="Left" />
+      <ToolbarItem propKey="styleMargin" index={0} type="slider" label="Top" />
+      <ToolbarItem propKey="styleMargin" index={1} type="slider" label="Right" />
+      <ToolbarItem propKey="styleMargin" index={2} type="slider" label="Bottom" />
+      <ToolbarItem propKey="styleMargin" index={3} type="slider" label="Left" />
+    </ToolbarSection> */}
+
+    <ToolbarSection title="Variant">
+      <ToolbarItem propKey="variant" type="radio" label="Style">
+        <ToolbarRadio value="contained" label="Full" />
+        <ToolbarRadio value="outlined" label="Outline" />
+        <ToolbarRadio value="text" label="Text" />
+      </ToolbarItem>
     </ToolbarSection>
-    <ToolbarSection title="Decoration">
-      <ToolbarItem propKey="buttonStyle" type="radio" label="Style">
-        <ToolbarRadio value="full" label="Full" />
-        <ToolbarRadio value="outline" label="Outline" />
+
+    <ToolbarSection title="Size">
+      <ToolbarItem propKey="size" type="radio" label="Style">
+        <ToolbarRadio value="small" label="Small" />
+        <ToolbarRadio value="medium" label="Medium" />
+        <ToolbarRadio value="large" label="Large" />
+      </ToolbarItem>
+    </ToolbarSection>
+
+    <ToolbarSection title="Background">
+      <ToolbarItem propKey="color" type="radio" label="Style">
+        <ToolbarRadio value="primary" label="Primary" />
+        <ToolbarRadio value="secondary" label="Secondary" />
+        <ToolbarRadio value="inherit" label="Inherit" />
+      </ToolbarItem>
+    </ToolbarSection>
+
+    <ToolbarSection title="Disabled">
+      <ToolbarItem propKey="disabled" type="radio" label="Style">
+        <ToolbarRadio value="false" label="False" />
+        <ToolbarRadio value="true" label="True" />
+      </ToolbarItem>
+    </ToolbarSection>
+
+    <ToolbarSection title="Href">
+      <ToolbarItem propKey="href" type="text" label="URL">
+        <ToolbarTextInput value="" label="URL" />
       </ToolbarItem>
     </ToolbarSection>
   </>
