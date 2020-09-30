@@ -1,5 +1,3 @@
-// TODO
-/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Grid, Slider, RadioGroup } from '@material-ui/core';
 import { useNode } from '@craftjs/core';
@@ -27,9 +25,7 @@ const SliderStyled = withStyles({
       boxShadow:
         '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        boxShadow: iOSBoxShadow,
-      },
+      '@media (hover: none)': { boxShadow: iOSBoxShadow },
     },
   },
   active: {},
@@ -41,9 +37,7 @@ const SliderStyled = withStyles({
       color: '#000',
     },
   },
-  track: {
-    height: 2,
-  },
+  track: { height: 2 },
   rail: {
     height: 2,
     opacity: 0.5,
@@ -71,89 +65,100 @@ export type ToolbarItem = {
   type: string;
   onChange?: (value: any) => any;
 };
-export const ToolbarItem = ({
-  full = false,
-  propKey,
-  type,
-  onChange,
-  index,
-  ...props
+
+const ToolbarItem = ({
+  full = false, propKey, type, onChange, index, ...props
 }: ToolbarItem) => {
   const {
     actions: { setProp },
     propValue,
-  } = useNode((node) => ({
-    propValue: node.data.props[propKey],
-  }));
+  } = useNode((node) => ({ propValue: node.data.props[propKey] }));
+
   const value = Array.isArray(propValue) ? propValue[index] : propValue;
 
   return (
     <Grid item xs={full ? 12 : 6}>
       <div className="mb-2">
-        {['text', 'color', 'bg', 'number'].includes(type) ? (
-          <ToolbarTextInput
-            {...props}
-            type={type}
-            value={value}
-            onChange={(value) => {
-              setProp((props: any) => {
-                if (Array.isArray(propValue)) {
-                  props[propKey][index] = onChange ? onChange(value) : value;
-                } else {
-                  props[propKey] = onChange ? onChange(value) : value;
-                }
-              }, 500);
-            }}
-          />
-        ) : type == 'slider' ? (
-          <>
-            {props.label ? (
-              <h4 className="text-sm text-light-gray-2">{props.label}</h4>
-            ) : null}
-            <SliderStyled
-              value={parseInt(value) || 0}
-              onChange={
-                ((_, value: number) => {
+        {(() => {
+          if (['text', 'color', 'bg', 'number'].includes(type)) {
+            return (
+              <ToolbarTextInput
+                {...props}
+                type={type}
+                value={value}
+                onChange={(value) => {
                   setProp((props: any) => {
                     if (Array.isArray(propValue)) {
-                      props[propKey][index] = onChange
-                        ? onChange(value)
-                        : value;
+                      props[propKey][index] = onChange ? onChange(value) : value;
                     } else {
                       props[propKey] = onChange ? onChange(value) : value;
                     }
-                  }, 1000);
-                }) as any
-              }
-            />
-          </>
-        ) : type == 'radio' ? (
-          <>
-            {props.label ? (
-              <h4 className="text-sm text-light-gray-2">{props.label}</h4>
-            ) : null}
-            <RadioGroup
-              value={value || 0}
-              onChange={(e) => {
-                const { value } = e.target;
-                setProp((props: any) => {
-                  props[propKey] = onChange ? onChange(value) : value;
-                });
-              }}
-            >
-              {props.children}
-            </RadioGroup>
-          </>
-        ) : type == 'select' ? (
-          <ToolbarDropdown
-            value={value || ''}
-            onChange={(value) => setProp(
-              (props: any) => (props[propKey] = onChange ? onChange(value) : value),
-            )}
-            {...props}
-          />
-        ) : null}
+                  }, 500);
+                }}
+              />
+            );
+          }
+
+          if (type === 'slider') {
+            return (
+              <>
+                {props.label ? <h4 className="text-sm text-light-gray-2">{props.label}</h4> : null}
+
+                <SliderStyled
+                  value={parseInt(value) || 0}
+                  onChange={
+                    ((_, value: number) => {
+                      setProp((props: any) => {
+                        if (Array.isArray(propValue)) {
+                          props[propKey][index] = onChange ? onChange(value) : value;
+                        } else {
+                          props[propKey] = onChange ? onChange(value) : value;
+                        }
+                      }, 1000);
+                    }) as any
+                  }
+                />
+              </>
+            );
+          }
+
+          if (type === 'radio') {
+            return (
+              <>
+                {props.label ? <h4 className="text-sm text-light-gray-2">{props.label}</h4> : null}
+
+                <RadioGroup
+                  value={value || 0}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    setProp((props: any) => {
+                      props[propKey] = onChange ? onChange(value) : value;
+                    });
+                  }}
+                >
+                  {props.children}
+                </RadioGroup>
+              </>
+            );
+          }
+
+          if (type === 'select') {
+            return (
+              <ToolbarDropdown
+                value={value || ''}
+                onChange={(value) => setProp(
+                  (props: any) => (props[propKey] = onChange ? onChange(value) : value),
+                )}
+                {...props}
+              />
+            );
+          }
+
+          return null;
+        })()}
       </div>
     </Grid>
   );
 };
+
+export { ToolbarItem };

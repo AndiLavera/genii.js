@@ -69,7 +69,7 @@ const Header = () => {
     enabled: state.options.enabled,
   }));
 
-  const [snackbarMessage, setSnackbarMessage] = useState();
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   return (
     <HeaderDiv

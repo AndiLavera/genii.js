@@ -45,13 +45,9 @@ function StyledRadio(props) {
   );
 }
 
-const useLabelStyles = makeStyles({
-  label: {
-    fontSize: '15px',
-  },
-});
+const useLabelStyles = makeStyles({ label: { fontSize: '15px' } });
 
-export const ToolbarRadio = ({ value, label }: any) => {
+const ToolbarRadio = ({ value, label }: any) => {
   const classes = useLabelStyles({});
   return (
     <FormControlLabel
@@ -62,3 +58,5 @@ export const ToolbarRadio = ({ value, label }: any) => {
     />
   );
 };
+
+export { ToolbarRadio };
