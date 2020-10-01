@@ -82,4 +82,4 @@ const TypographySettings = () => (
   </>
 );
 
-export { TypographySettings };
+export default TypographySettings;

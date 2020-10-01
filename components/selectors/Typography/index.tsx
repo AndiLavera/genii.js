@@ -1,10 +1,11 @@
 import React from 'react';
-import { useNode, useEditor } from '@craftjs/core';
+import { useNode } from '@craftjs/core';
 // import ContentEditable from 'react-contenteditable';
 import {
   Typography as MaterialTypography,
 } from '@material-ui/core';
-import { TypographySettings } from './TypographySettings';
+
+import TypographySettings from './TypographySettings';
 
 type TypographyProps = {
   text: string;
@@ -31,7 +32,7 @@ const Typography = ({ text, api, styles }: Partial<TypographyProps>) => {
     // setProp,
   } = useNode();
 
-  // For contentEditable
+  // For contentEditable - useEditor is from '@craftjs/core'
   // const { enabled } = useEditor((state) => ({
   //   enabled: state.options.enabled,
   // }));
@@ -70,9 +71,9 @@ const Typography = ({ text, api, styles }: Partial<TypographyProps>) => {
 };
 
 const TypographyDefaultProps = {
-  text: 'Typography',
+  text: 'Hello World!',
   api: {
-    color: 'primary',
+    color: 'textPrimary',
     display: 'initial',
     variant: 'body1',
     align: 'left',
@@ -90,11 +91,11 @@ const TypographyDefaultProps = {
 Typography.defaultProps = TypographyDefaultProps;
 
 Typography.craft = {
-  displayName: 'Text',
+  displayName: 'Typography',
   props: TypographyDefaultProps,
   related: {
     toolbar: TypographySettings,
   },
 };
 
-export { Typography };
+export default Typography;
