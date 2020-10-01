@@ -1,4 +1,4 @@
-// TODO: Add css styles
+// Material UI Button Component
 import {
   Button as MaterialButton,
 } from '@material-ui/core';
@@ -10,8 +10,8 @@ import formatStyles from '../../../utils/formatStyles';
 type ButtonProps = {
   text?: string;
   api?: {
-    size?: string;
-    variant?: string;
+    size?: 'small' | 'medium' | 'large';
+    variant?: 'text' | 'outlined' | 'contained';
     color?: string;
     href?: string;
   }

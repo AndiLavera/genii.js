@@ -31,7 +31,7 @@ const ButtonApiSettings = () => (
 
     <ToolbarSection title="Href">
       <ToolbarItem propKey="api.href" type="text" label="URL">
-        <ToolbarTextInput value="" label="URL" />
+        <ToolbarTextInput value="" label="URL" type="text" />
       </ToolbarItem>
     </ToolbarSection>
   </>
