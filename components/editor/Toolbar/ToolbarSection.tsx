@@ -43,6 +43,18 @@ const useSummaryStyles = makeStyles((_) => ({
   },
 }));
 
+const reduceProps = (props, nodeProps) => props.reduce((acc: any, key: any) => {
+  if (key.includes('.')) {
+    const keys = key.split('.');
+    acc[keys[0]] = acc[keys[0]] || {};
+    acc[keys[0]][keys[1]] = nodeProps[keys[0]][keys[1]];
+  } else {
+    acc[key] = nodeProps[key];
+  }
+
+  return acc;
+}, {});
+
 const ToolbarSection = ({
   title, props, summary, children,
 }: any) => {
@@ -78,17 +90,7 @@ const ToolbarSection = ({
               <Grid item xs={8}>
                 <h5 className="text-light-gray-2 text-sm text-right text-dark-blue">
                   {summary(
-                    props.reduce((acc: any, key: any) => {
-                      if (key.includes('.')) {
-                        const keys = key.split('.');
-                        acc[keys[0]] = acc[keys[0]] || {};
-                        acc[keys[0]][keys[1]] = nodeProps[keys[0]][keys[1]];
-                      } else {
-                        acc[key] = nodeProps[key];
-                      }
-
-                      return acc;
-                    }, {}),
+                    reduceProps(props, nodeProps),
                   )}
                 </h5>
               </Grid>

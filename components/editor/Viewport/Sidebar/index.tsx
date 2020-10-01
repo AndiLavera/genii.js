@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Layers } from '@craftjs/layers';
+import styled from 'styled-components';
+import { useEditor } from '@craftjs/core';
 import { Toolbar } from '../../Toolbar';
 import { SidebarItem } from './SidebarItem';
-import styled from 'styled-components';
 import CustomizeIcon from '../../../../public/icons/customize.svg';
 import LayerIcon from '../../../../public/icons/layers.svg';
-import { useEditor } from '@craftjs/core';
 
 export const SidebarDiv = styled.div<{ enabled: boolean }>`
   width: ${(props) => (props.enabled ? 280 : 0)}px;
@@ -40,7 +40,7 @@ export const Sidebar = () => {
           onChange={(val) => setLayerVisible(val)}
         >
           <div className="">
-            <Layers expandRootOnLoad={true} />
+            <Layers expandRootOnLoad />
           </div>
         </SidebarItem>
       </div>

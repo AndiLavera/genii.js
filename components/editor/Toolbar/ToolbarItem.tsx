@@ -163,7 +163,7 @@ const ToolbarItem = ({
                 onChange={(value) => setProp(
                   // setValue(props, propKey, propValue, value, index, onChange)
                   // ^ should work but needs to be tested. Should hit the `else` clause
-                  (props: any) => (props[propKey] = onChange ? onChange(value) : value),
+                  (props: any) => { props[propKey] = onChange ? onChange(value) : value; },
                 )}
                 {...props}
               />

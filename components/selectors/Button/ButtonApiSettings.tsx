@@ -3,7 +3,7 @@ import { ToolbarSection, ToolbarItem } from '../../editor';
 import { ToolbarRadio } from '../../editor/Toolbar/ToolbarRadio';
 import { ToolbarTextInput } from '../../editor/Toolbar/ToolbarTextInput';
 
-const ApiSettings = () => (
+const ButtonApiSettings = () => (
   <>
     <ToolbarSection title="Variant">
       <ToolbarItem propKey="api.variant" type="radio" label="Style">
@@ -44,4 +44,4 @@ const ApiSettings = () => (
   </>
 );
 
-export default ApiSettings;
+export default ButtonApiSettings;

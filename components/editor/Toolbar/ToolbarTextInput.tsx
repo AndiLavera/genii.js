@@ -64,11 +64,9 @@ export const ToolbarTextInput = ({
   const classes = useStyles({});
   const labelClasses = useLabelStyles({});
   useEffect(() => {
-    // if (value !== internalValue) {
     let val = value;
-    if (type == 'color' || type == 'bg') val = `rgba(${Object.values(value)})`;
+    if (type === 'color' || type === 'bg') val = `rgba(${Object.values(value)})`;
     setInternalValue(val);
-    // }
   }, [value]);
 
   return (
@@ -117,7 +115,7 @@ export const ToolbarTextInput = ({
         style={{ margin: 0, width: '100%' }}
         value={internalValue || ''}
         onKeyDown={(e) => {
-          if (e.key == 'Enter') {
+          if (e.key === 'Enter') {
             onChange((e.target as any).value);
           }
         }}

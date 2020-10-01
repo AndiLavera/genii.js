@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToolbarSection, ToolbarItem } from '../../editor';
+import { ToolbarSection, ToolbarItem } from '../editor';
 // import { ToolbarRadio } from '../../editor/Toolbar/ToolbarRadio';
 // import { ToolbarTextInput } from '../../editor/Toolbar/ToolbarTextInput';
 
