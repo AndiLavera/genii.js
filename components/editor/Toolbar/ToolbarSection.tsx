@@ -43,21 +43,26 @@ const useSummaryStyles = makeStyles((_) => ({
   },
 }));
 
-export const ToolbarSection = ({
+const ToolbarSection = ({
   title, props, summary, children,
 }: any) => {
   const panelClasses = usePanelStyles({});
   const summaryClasses = useSummaryStyles({});
-  const {
-    nodeProps,
-  } = useNode((node) => ({
+  const { nodeProps } = useNode((node) => ({
     nodeProps:
-      props
-      && props.reduce((res: any, key: any) => {
-        res[key] = node.data.props[key] || null;
+      props && props.reduce((res: any, key: any) => {
+        if (key.includes('.')) {
+          const keys = key.split('.');
+          res[keys[0]] = res[keys[0]] || {};
+          res[keys[0]][keys[1]] = node.data.props[keys[0]][keys[1]] || null;
+        } else {
+          res[key] = node.data.props[key] || null;
+        }
+
         return res;
       }, {}),
   }));
+
   return (
     <ExpansionPanel classes={panelClasses}>
       <ExpansionPanelSummary classes={summaryClasses}>
@@ -68,12 +73,20 @@ export const ToolbarSection = ({
                 {title}
               </h5>
             </Grid>
+
             {summary && props ? (
               <Grid item xs={8}>
                 <h5 className="text-light-gray-2 text-sm text-right text-dark-blue">
                   {summary(
                     props.reduce((acc: any, key: any) => {
-                      acc[key] = nodeProps[key];
+                      if (key.includes('.')) {
+                        const keys = key.split('.');
+                        acc[keys[0]] = acc[keys[0]] || {};
+                        acc[keys[0]][keys[1]] = nodeProps[keys[0]][keys[1]];
+                      } else {
+                        acc[key] = nodeProps[key];
+                      }
+
                       return acc;
                     }, {}),
                   )}
@@ -83,15 +96,16 @@ export const ToolbarSection = ({
           </Grid>
         </div>
       </ExpansionPanelSummary>
-      <ExpansionPanelDetails style={{
-        padding: '0px 24px 20px',
-      }}
-      >
+
+      <ExpansionPanelDetails style={{ padding: '0px 24px 20px' }}>
         <Divider />
         <Grid container spacing={1}>
           {children}
         </Grid>
       </ExpansionPanelDetails>
+
     </ExpansionPanel>
   );
 };
+
+export { ToolbarSection };

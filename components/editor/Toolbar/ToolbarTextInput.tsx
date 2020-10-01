@@ -74,11 +74,12 @@ export const ToolbarTextInput = ({
   return (
     <div
       style={{ width: '100%', position: 'relative' }}
-      onClick={() => {
-        setActive(true);
-      }}
+      role="button"
+      tabIndex={0}
+      onClick={() => setActive(true)}
+      onKeyPress={() => setActive(true)}
     >
-      {(type == 'color' || type == 'bg') && active ? (
+      {(type === 'color' || type === 'bg') && active ? (
         <div
           className="absolute"
           style={{
@@ -89,11 +90,19 @@ export const ToolbarTextInput = ({
         >
           <div
             className="fixed top-0 left-0 w-full h-full cursor-pointer"
+            role="button"
+            tabIndex={0}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               setActive(false);
             }}
+            onKeyPress={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setActive(false);
+            }}
+            label="Disable"
           />
           <ChromePicker
             color={value}

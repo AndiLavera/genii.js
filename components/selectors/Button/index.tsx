@@ -6,6 +6,7 @@ import { useNode } from '@craftjs/core';
 
 // import { Text } from '../Text';
 import { ButtonSettings } from './ButtonSettings';
+import formatStyles from '../../../utils/formatStyles';
 
 // type ButtonProps = {
 //   background?: Record<'r' | 'g' | 'b' | 'a', number>;
@@ -16,32 +17,25 @@ import { ButtonSettings } from './ButtonSettings';
 //   textComponent?: any;
 // };
 
-// const styles = (props: any) => {
-//   const { styleBackground, styleColor, styleMargin } = props;
-//   const style = {};
-
-//   style.margin = `${styleMargin[0]}px ${styleMargin[1]}px ${styleMargin[2]}px ${styleMargin[3]}px
-//   style.color = styleColor ? `rgba(${Object.values(styleColor)})` : '';
-//   style.background = styleBackground ? `rgba(${Object.values(styleBackground)})` : '';
-
-//   return style;
-// };
-
 const ButtonDefaultProps = {
-  size: 'small',
-  variant: 'contained',
-  color: 'primary',
   text: 'Button',
-  disabled: 'false',
-  href: '',
-  // styleBackground: undefined,
-  // styleColor: undefined,
-  // styleMargin: ['0', '0', '0', '0'],
+  api: {
+    size: 'small',
+    variant: 'contained',
+    color: 'primary',
+    disabled: 'false',
+    href: '',
+  },
+  styles: {
+    background: {},
+    color: {},
+    margin: ['0', '0', '0', '0'],
+  },
 };
 
 const Button = (props: any) => {
   const {
-    color, size, variant, text, disabled, href,
+    text, api, styles,
   } = props;
 
   const { connectors: { connect, drag } } = useNode();
@@ -49,12 +43,12 @@ const Button = (props: any) => {
   return (
     <MaterialButton
       ref={(ref) => connect(drag(ref))}
-      color={color}
-      size={size}
-      variant={variant}
-      disabled={!!(disabled === 'true')}
-      href={href}
-      // style={styles(props)}
+      color={api.color}
+      size={api.size}
+      variant={api.variant}
+      disabled={!!(api.disabled === 'true')}
+      href={api.href}
+      style={formatStyles(styles)}
     >
       {text}
     </MaterialButton>

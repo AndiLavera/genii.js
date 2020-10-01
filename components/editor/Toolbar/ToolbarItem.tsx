@@ -55,6 +55,20 @@ const SliderStyled = withStyles({
   },
 })(Slider);
 
+function setValue(props, propKey, propValue, value, index, onChange) {
+  if (Array.isArray(propValue) && propKey.includes('.')) {
+    const keys = propKey.split('.');
+    props[keys[0]][keys[1]][index] = onChange ? onChange(value) : value;
+  } else if (Array.isArray(propValue)) {
+    props[propKey][index] = onChange ? onChange(value) : value;
+  } else if (propKey.includes('.')) {
+    const keys = propKey.split('.');
+    props[keys[0]][keys[1]] = onChange ? onChange(value) : value;
+  } else {
+    props[propKey] = onChange ? onChange(value) : value;
+  }
+}
+
 export type ToolbarItem = {
   prefix?: string;
   label?: string;
@@ -72,7 +86,15 @@ const ToolbarItem = ({
   const {
     actions: { setProp },
     propValue,
-  } = useNode((node) => ({ propValue: node.data.props[propKey] }));
+  } = useNode((node) => {
+    // Allows passing in 'api.variant' as a prop key
+    // Allows storing component setting props in nested objects
+    if (propKey.includes('.')) {
+      const keys = propKey.split('.');
+      return { propValue: node.data.props[keys[0]][keys[1]] };
+    }
+    return { propValue: node.data.props[propKey] };
+  });
 
   const value = Array.isArray(propValue) ? propValue[index] : propValue;
 
@@ -88,11 +110,7 @@ const ToolbarItem = ({
                 value={value}
                 onChange={(value) => {
                   setProp((props: any) => {
-                    if (Array.isArray(propValue)) {
-                      props[propKey][index] = onChange ? onChange(value) : value;
-                    } else {
-                      props[propKey] = onChange ? onChange(value) : value;
-                    }
+                    setValue(props, propKey, propValue, value, index, onChange);
                   }, 500);
                 }}
               />
@@ -109,11 +127,7 @@ const ToolbarItem = ({
                   onChange={
                     ((_, value: number) => {
                       setProp((props: any) => {
-                        if (Array.isArray(propValue)) {
-                          props[propKey][index] = onChange ? onChange(value) : value;
-                        } else {
-                          props[propKey] = onChange ? onChange(value) : value;
-                        }
+                        setValue(props, propKey, propValue, value, index, onChange);
                       }, 1000);
                     }) as any
                   }
@@ -132,7 +146,7 @@ const ToolbarItem = ({
                   onChange={(e) => {
                     const { value } = e.target;
                     setProp((props: any) => {
-                      props[propKey] = onChange ? onChange(value) : value;
+                      setValue(props, propKey, propValue, value, index, onChange);
                     });
                   }}
                 >
@@ -147,6 +161,8 @@ const ToolbarItem = ({
               <ToolbarDropdown
                 value={value || ''}
                 onChange={(value) => setProp(
+                  // setValue(props, propKey, propValue, value, index, onChange)
+                  // ^ should work but needs to be tested. Should hit the `else` clause
                   (props: any) => (props[propKey] = onChange ? onChange(value) : value),
                 )}
                 {...props}
