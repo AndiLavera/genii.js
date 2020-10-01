@@ -3,12 +3,12 @@ import { NextSeo } from 'next-seo';
 import { Editor, Frame, Element } from '@craftjs/core';
 import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
-import lz from 'lzutf8';
+// import lz from 'lzutf8';
 import { Container, Typography } from '../components/selectors';
 import { Custom1, OnlyButtons } from '../components/selectors/Custom1';
 import { Custom2, Custom2VideoDrop } from '../components/selectors/Custom2';
 import { Custom3, Custom3BtnDrop } from '../components/selectors/Custom3';
-import { Button } from '../components/selectors/Button';
+import Button from '../components/selectors/Button';
 import { Video } from '../components/selectors/Video';
 import { Viewport, RenderNode } from '../components/editor';
 import '../styles/app.css';
@@ -27,9 +27,10 @@ const theme = createMuiTheme({
 
 function App() {
   const [enabled] = useState(true);
-  const base64 = '';
-  const uint8array = lz.decodeBase64(base64);
-  const json = lz.decompress(uint8array);
+  // const base64 = '';
+  // const uint8array = lz.decodeBase64(base64);
+  // const json = lz.decompress(uint8array);
+
   return (
     <ThemeProvider theme={theme}>
       <div className="h-full h-screen">

@@ -4,7 +4,7 @@ import {
 } from '@material-ui/core';
 import { useNode } from '@craftjs/core';
 
-import { ButtonSettings } from './ButtonSettings';
+import ButtonSettings from './ButtonSettings';
 import formatStyles from '../../../utils/formatStyles';
 
 type ButtonProps = {
@@ -12,7 +12,7 @@ type ButtonProps = {
   api?: {
     size?: 'small' | 'medium' | 'large';
     variant?: 'text' | 'outlined' | 'contained';
-    color?: string;
+    color?: | 'inherit' | 'primary' | 'secondary';
     href?: string;
   }
   styles?: {
@@ -64,4 +64,4 @@ Button.craft = {
   },
 };
 
-export { Button };
+export default Button;

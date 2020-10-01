@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Container } from '../../selectors/Container';
 import { Typography } from '../../selectors/Typography';
 import { Video } from '../../selectors/Video';
-import { Button } from '../../selectors/Button';
+import Button from '../../selectors/Button';
 
 import SquareSvg from '../../../public/icons/toolbox/rectangle.svg';
 import TypeSvg from '../../../public/icons/toolbox/text.svg';

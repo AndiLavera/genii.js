@@ -9,4 +9,4 @@ const ButtonSettings = () => (
   </>
 );
 
-export { ButtonSettings };
+export default ButtonSettings;
