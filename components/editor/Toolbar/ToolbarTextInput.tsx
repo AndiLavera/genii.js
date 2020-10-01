@@ -100,7 +100,6 @@ export const ToolbarTextInput = ({
               e.stopPropagation();
               setActive(false);
             }}
-            label="Disable"
           />
           <ChromePicker
             color={value}

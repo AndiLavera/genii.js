@@ -29,13 +29,6 @@ const ButtonApiSettings = () => (
       </ToolbarItem>
     </ToolbarSection>
 
-    <ToolbarSection title="Disabled">
-      <ToolbarItem propKey="api.disabled" type="radio" label="Style">
-        <ToolbarRadio value="false" label="False" />
-        <ToolbarRadio value="true" label="True" />
-      </ToolbarItem>
-    </ToolbarSection>
-
     <ToolbarSection title="Href">
       <ToolbarItem propKey="api.href" type="text" label="URL">
         <ToolbarTextInput value="" label="URL" />

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNode, useEditor } from '@craftjs/core';
-import { TextSettings } from './TextSettings';
 import ContentEditable from 'react-contenteditable';
+import { TypographySettings } from './TypographySettings';
 
-export type Text = {
+export type Typography = {
   fontSize: string;
   textAlign: string;
   fontWeight: string;
@@ -13,7 +13,7 @@ export type Text = {
   margin: [string, string, string, string];
 };
 
-export const Text = ({
+export const Typography = ({
   fontSize,
   textAlign,
   fontWeight,
@@ -21,7 +21,7 @@ export const Text = ({
   shadow,
   text,
   margin,
-}: Partial<Text>) => {
+}: Partial<Typography>) => {
   const {
     connectors: { connect },
     setProp,
@@ -51,18 +51,20 @@ export const Text = ({
   );
 };
 
-Text.craft = {
+Typography.craft = {
   displayName: 'Text',
   props: {
     fontSize: '15',
     textAlign: 'left',
     fontWeight: '500',
-    color: { r: 92, g: 90, b: 90, a: 1 },
+    color: {
+      r: 92, g: 90, b: 90, a: 1,
+    },
     margin: [0, 0, 0, 0],
     shadow: 0,
     text: 'Text',
   },
   related: {
-    toolbar: TextSettings,
+    toolbar: TypographySettings,
   },
 };

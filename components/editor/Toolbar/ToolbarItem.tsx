@@ -69,7 +69,7 @@ function setValue(props, propKey, propValue, value, index, onChange) {
   }
 }
 
-export type ToolbarItem = {
+export type ToolbarItemType = {
   prefix?: string;
   label?: string;
   full?: boolean;
@@ -82,7 +82,7 @@ export type ToolbarItem = {
 
 const ToolbarItem = ({
   full = false, propKey, type, onChange, index, ...props
-}: ToolbarItem) => {
+}: ToolbarItemType) => {
   const {
     actions: { setProp },
     propValue,

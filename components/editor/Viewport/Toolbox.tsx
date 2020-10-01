@@ -3,7 +3,7 @@ import { Element, useEditor } from '@craftjs/core';
 import { Tooltip } from '@material-ui/core';
 import styled from 'styled-components';
 import { Container } from '../../selectors/Container';
-import { Text } from '../../selectors/Text';
+import { Typography } from '../../selectors/Typography';
 import { Video } from '../../selectors/Video';
 import { Button } from '../../selectors/Button';
 
@@ -80,7 +80,7 @@ const Toolbox = () => {
           </Tooltip>
         </div>
         <div
-          ref={(ref) => create(ref, <Text fontSize="12" textAlign="left" text="Hi there" />)}
+          ref={(ref) => create(ref, <Typography fontSize="12" textAlign="left" text="Hi there" />)}
         >
           <Tooltip title="Text" placement="right">
             <Item className="m-2 pb-2 cursor-pointer block" move>
@@ -88,7 +88,7 @@ const Toolbox = () => {
             </Item>
           </Tooltip>
         </div>
-        <div ref={(ref) => create(ref, <Button color="primary" />)}>
+        <div ref={(ref) => create(ref, <Button />)}>
           <Tooltip title="Button" placement="right">
             <Item className="m-2 pb-2 cursor-pointer block" move>
               <ButtonSvg />

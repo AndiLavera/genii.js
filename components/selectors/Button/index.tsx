@@ -4,18 +4,40 @@ import {
 } from '@material-ui/core';
 import { useNode } from '@craftjs/core';
 
-// import { Text } from '../Text';
 import { ButtonSettings } from './ButtonSettings';
 import formatStyles from '../../../utils/formatStyles';
 
-// type ButtonProps = {
-//   background?: Record<'r' | 'g' | 'b' | 'a', number>;
-//   color?: Record<'r' | 'g' | 'b' | 'a', number>;
-//   buttonStyle?: string;
-//   margin?: string[];
-//   text?: string;
-//   textComponent?: any;
-// };
+type ButtonProps = {
+  text?: string;
+  api?: {
+    size?: string;
+    variant?: string;
+    color?: string;
+    href?: string;
+  }
+  styles?: {
+    background?: Record<'r' | 'g' | 'b' | 'a', number>;
+    color?: Record<'r' | 'g' | 'b' | 'a', number>;
+    margin?: string[];
+  }
+};
+
+const Button = ({ text, api, styles }: ButtonProps) => {
+  const { connectors: { connect, drag } } = useNode();
+
+  return (
+    <MaterialButton
+      ref={(ref) => connect(drag(ref))}
+      color={api.color}
+      size={api.size}
+      variant={api.variant}
+      href={api.href}
+      style={formatStyles(styles)}
+    >
+      {text}
+    </MaterialButton>
+  );
+};
 
 const ButtonDefaultProps = {
   text: 'Button',
@@ -23,7 +45,6 @@ const ButtonDefaultProps = {
     size: 'small',
     variant: 'contained',
     color: 'primary',
-    disabled: 'false',
     href: '',
   },
   styles: {
@@ -33,27 +54,7 @@ const ButtonDefaultProps = {
   },
 };
 
-const Button = (props: any) => {
-  const {
-    text, api, styles,
-  } = props;
-
-  const { connectors: { connect, drag } } = useNode();
-
-  return (
-    <MaterialButton
-      ref={(ref) => connect(drag(ref))}
-      color={api.color}
-      size={api.size}
-      variant={api.variant}
-      disabled={!!(api.disabled === 'true')}
-      href={api.href}
-      style={formatStyles(styles)}
-    >
-      {text}
-    </MaterialButton>
-  );
-};
+Button.defaultProps = ButtonDefaultProps;
 
 Button.craft = {
   displayName: 'Button',

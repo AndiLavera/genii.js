@@ -4,7 +4,7 @@ import { Editor, Frame, Element } from '@craftjs/core';
 import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import lz from 'lzutf8';
-import { Container, Text } from '../components/selectors';
+import { Container, Typography } from '../components/selectors';
 import { Custom1, OnlyButtons } from '../components/selectors/Custom1';
 import { Custom2, Custom2VideoDrop } from '../components/selectors/Custom2';
 import { Custom3, Custom3BtnDrop } from '../components/selectors/Custom3';
@@ -45,7 +45,7 @@ function App() {
         <Editor
           resolver={{
             Container,
-            Text,
+            Typography,
             Custom1,
             Custom2,
             Custom2VideoDrop,
