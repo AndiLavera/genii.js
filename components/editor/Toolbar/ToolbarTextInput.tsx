@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { ChromePicker } from 'react-color';
 import { TextField, makeStyles, InputAdornment } from '@material-ui/core';
 
@@ -64,21 +64,20 @@ export const ToolbarTextInput = ({
   const classes = useStyles({});
   const labelClasses = useLabelStyles({});
   useEffect(() => {
-    // if (value !== internalValue) {
     let val = value;
-    if (type == 'color' || type == 'bg') val = `rgba(${Object.values(value)})`;
+    if (type === 'color' || type === 'bg') val = `rgba(${Object.values(value)})`;
     setInternalValue(val);
-    // }
   }, [value]);
 
   return (
     <div
       style={{ width: '100%', position: 'relative' }}
-      onClick={() => {
-        setActive(true);
-      }}
+      role="button"
+      tabIndex={0}
+      onClick={() => setActive(true)}
+      onKeyPress={() => setActive(true)}
     >
-      {(type == 'color' || type == 'bg') && active ? (
+      {(type === 'color' || type === 'bg') && active ? (
         <div
           className="absolute"
           style={{
@@ -89,12 +88,19 @@ export const ToolbarTextInput = ({
         >
           <div
             className="fixed top-0 left-0 w-full h-full cursor-pointer"
+            role="button"
+            tabIndex={0}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               setActive(false);
             }}
-          ></div>
+            onKeyPress={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setActive(false);
+            }}
+          />
           <ChromePicker
             color={value}
             onChange={(color: any) => {
@@ -108,7 +114,7 @@ export const ToolbarTextInput = ({
         style={{ margin: 0, width: '100%' }}
         value={internalValue || ''}
         onKeyDown={(e) => {
-          if (e.key == 'Enter') {
+          if (e.key === 'Enter') {
             onChange((e.target as any).value);
           }
         }}

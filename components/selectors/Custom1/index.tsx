@@ -1,7 +1,7 @@
 import React from 'react';
 import { Element, useNode } from '@craftjs/core';
 import { Container } from '../Container';
-import { Button } from '../Button';
+import Button from '../Button';
 
 const OnlyButtons = ({ children, ...props }) => {
   const { connectors: { connect } } = useNode();

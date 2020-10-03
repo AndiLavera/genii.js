@@ -14,6 +14,4 @@ const ToolbarDropdown = ({
   </FormControl>
 );
 
-export {
-  ToolbarDropdown,
-};
+export { ToolbarDropdown };
