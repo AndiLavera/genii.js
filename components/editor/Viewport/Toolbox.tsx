@@ -53,7 +53,6 @@ const Toolbox = () => {
   const handleContextMenu = (e) => {
     e.preventDefault();
     // TODO: Context menu
-    console.log(e.target);
   };
 
   return (
