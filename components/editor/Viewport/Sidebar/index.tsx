@@ -13,35 +13,56 @@ export const SidebarDiv = styled.div<{ enabled: boolean }>`
   background: #fff;
 `;
 
+const color = '#D8D8D8';
+
 export const Sidebar = () => {
-  const [layersVisible, setLayerVisible] = useState(true);
-  const [toolbarVisible, setToolbarVisible] = useState(true);
+  const [layersVisible, setLayerVisible] = useState(false);
   const { enabled } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
 
   return (
     <SidebarDiv enabled={enabled} className="sidebar transition bg-white w-2">
+      <div className="flex flex-row justify-center">
+        <div className="mr-8">
+          <button
+            onClick={() => setLayerVisible(false)}
+            type="button"
+            style={layersVisible ? { color } : {}}
+          >
+            Design
+          </button>
+        </div>
+        <div className="ml-8">
+          <button
+            onClick={() => setLayerVisible(true)}
+            type="button"
+            style={layersVisible ? {} : { color }}
+          >
+            Layers
+          </button>
+        </div>
+      </div>
+
       <div className="flex flex-col h-full">
-        <SidebarItem
-          icon={CustomizeIcon}
-          title="Customize"
-          height={!layersVisible ? 'full' : '55%'}
-          visible={toolbarVisible}
-          onChange={(val) => setToolbarVisible(val)}
-        >
-          <Toolbar />
-        </SidebarItem>
         <SidebarItem
           icon={LayerIcon}
           title="Layers"
-          height={!toolbarVisible ? 'full' : '45%'}
+          height="full"
           visible={layersVisible}
-          onChange={(val) => setLayerVisible(val)}
         >
           <div className="">
             <Layers expandRootOnLoad />
           </div>
+        </SidebarItem>
+
+        <SidebarItem
+          icon={CustomizeIcon}
+          title="Customize"
+          height="full"
+          visible={!layersVisible}
+        >
+          <Toolbar />
         </SidebarItem>
       </div>
     </SidebarDiv>

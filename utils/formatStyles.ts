@@ -6,9 +6,15 @@ interface Styles {
 
 export default function formatStyles(props: Styles) {
   const { background, color, margin } = props;
-  const style = {};
+  const style = {
+    margin: '',
+    color: '',
+    background: '',
+  };
 
-  style.margin = margin ? `${margin[0]}px ${margin[1]}px ${margin[2]}px ${margin[3]}px` : '';
+  style.margin = margin
+    ? `${margin[0]}px ${margin[1]}px ${margin[2]}px ${margin[3]}px`
+    : '';
   style.color = color ? `rgba(${Object.values(color)})` : '';
   style.background = background ? `rgba(${Object.values(background)})` : '';
 

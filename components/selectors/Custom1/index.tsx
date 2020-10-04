@@ -30,9 +30,11 @@ const Custom1 = (props: any) => (
     <Element canvas id="wow" is={OnlyButtons}>
       <Button />
       <Button
-        buttonStyle="outline"
-        color={{
-          r: 255, g: 255, b: 255, a: 1,
+        api={{ variant: 'outlined' }}
+        styles={{
+          color: {
+            r: 255, g: 255, b: 255, a: 1,
+          },
         }}
       />
     </Element>

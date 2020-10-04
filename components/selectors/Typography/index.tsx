@@ -18,7 +18,7 @@ type TypographyProps = {
   styles?: {
     fontSize: string;
     textAlign: 'start' | 'end' | 'left' | 'right' | 'center' | 'justify' | 'match-parent';
-    fontWeight: string;
+    fontWeight: number;
     color: Record<'r' | 'g' | 'b' | 'a', string>;
     shadow: number;
     margin: [string, string, string, string];
@@ -81,7 +81,7 @@ const TypographyDefaultProps = {
   styles: {
     fontSize: '12',
     textAlign: 'left',
-    fontWeight: '500',
+    fontWeight: 500,
     color: {},
     margin: [0, 0, 0, 0],
     shadow: 0,

@@ -50,10 +50,17 @@ const Toolbox = () => {
     canRedo: query.history.canRedo(),
   }));
 
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+    // TODO: Context menu
+    console.log(e.target);
+  };
+
   return (
     <ToolboxDiv
       enabled={enabled && enabled}
       className="toolbox transition w-12 border-r h-full flex flex-col bg-white"
+      onContextMenu={(e) => handleContextMenu(e)}
     >
       <div className="flex flex-1 flex-col items-center pt-3">
         <div
@@ -79,9 +86,7 @@ const Toolbox = () => {
             </Item>
           </Tooltip>
         </div>
-        <div
-          ref={(ref) => create(ref, <Typography />)}
-        >
+        <div ref={(ref) => create(ref, <Typography />)}>
           <Tooltip title="Text" placement="right">
             <Item className="m-2 pb-2 cursor-pointer block" move>
               <TypeSvg />

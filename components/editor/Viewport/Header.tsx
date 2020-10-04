@@ -23,7 +23,7 @@ const HeaderDiv = styled.div<{ enabled: boolean }>`
 `;
 
 const Link = styled.a<any>`
-  padding: 20px 0px;
+  padding: 10px 0px;
   margin-right: 35px;
   font-size: 13px;
   position: relative;
@@ -74,7 +74,7 @@ const Header = () => {
   return (
     <HeaderDiv
       enabled={enabled}
-      className="header bg-light-gray-1 text-white transition w-full"
+      className="header bg-dark-gray-1 text-white transition w-full"
     >
       <div className="items-center flex w-full px-4 ">
         <div className="flex-1">

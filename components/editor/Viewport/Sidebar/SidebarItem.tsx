@@ -5,9 +5,10 @@ import Arrow from '../../../../public/icons/arrow.svg';
 const SidebarItemDiv = styled.div<{ visible?: boolean; height?: string }>`
   height: ${(props) => (props.visible && props.height && props.height !== 'full'
     ? `${props.height}`
-    : 'auto')};
+    : '0px')};
   flex: ${(props) => (props.visible && props.height && props.height == 'full' ? `1` : 'unset')};
   color: #545454;
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')}
 `;
 
 const Chevron = styled.a<{ visible: boolean }>`

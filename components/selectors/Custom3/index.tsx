@@ -36,8 +36,10 @@ export const Custom3 = (props: any) => (
       </h2>
     </div>
     <Element canvas is={Custom3BtnDrop} id="wow">
-      <Button background={{
-        r: 184, g: 247, b: 247, a: 1,
+      <Button styles={{
+        color: {
+          r: 184, g: 247, b: 247, a: 1,
+        },
       }}
       />
     </Element>

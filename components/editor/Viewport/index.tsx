@@ -86,7 +86,7 @@ export const Viewport: React.FC = ({ children }) => {
       </Dialog>
       <Header />
       <div
-        style={{ paddingTop: '59px' }}
+        style={{ paddingTop: '40px' }}
         className={cx([
           'flex h-full overflow-hidden flex-row w-full',
           {
