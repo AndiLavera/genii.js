@@ -44,7 +44,7 @@ export const LeftSidebar = () => {
         </div>
       </div>
 
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full  overflow-auto">
         <SidebarItem
           icon={LayerIcon}
           title="Layers"

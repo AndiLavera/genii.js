@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { Layers } from '@craftjs/layers';
 import styled from 'styled-components';
 import { useEditor } from '@craftjs/core';
 import { Toolbar } from '../../Toolbar';
 import { SidebarItem } from './SidebarItem';
 import CustomizeIcon from '../../../../public/icons/customize.svg';
-import LayerIcon from '../../../../public/icons/layers.svg';
 
 export const SidebarDiv = styled.div<{ enabled: boolean }>`
   width: ${(props) => (props.enabled ? 240 : 0)}px;
@@ -67,7 +65,7 @@ export const RightSidebar = () => {
         </div>
       </div>
 
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full overflow-auto">
         {/* <SidebarItem
           icon={LayerIcon}
           title="Layers"

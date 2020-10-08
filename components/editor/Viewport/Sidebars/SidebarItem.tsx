@@ -60,7 +60,7 @@ export const SidebarItem: React.FC<SidebarItem> = ({
       </Chevron>
     </HeaderDiv>
     {visible ? (
-      <div className="w-full flex-1 overflow-auto">{children}</div>
+      <div className="w-full flex-1">{children}</div>
     ) : null}
   </SidebarItemDiv>
 );
