@@ -8,38 +8,38 @@ import CustomizeIcon from '../../../../public/icons/customize.svg';
 import LayerIcon from '../../../../public/icons/layers.svg';
 
 export const SidebarDiv = styled.div<{ enabled: boolean }>`
-  width: ${(props) => (props.enabled ? 280 : 0)}px;
+  width: ${(props) => (props.enabled ? 240 : 0)}px;
   opacity: ${(props) => (props.enabled ? 1 : 0)};
   background: #fff;
 `;
 
 const color = '#D8D8D8';
 
-export const Sidebar = () => {
-  const [layersVisible, setLayerVisible] = useState(false);
+export const LeftSidebar = () => {
+  const [layersVisible, setLayerVisible] = useState(true);
   const { enabled } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
 
   return (
-    <SidebarDiv enabled={enabled} className="sidebar transition bg-white w-2">
+    <SidebarDiv enabled={enabled} className="toolbox transition bg-white w-2">
       <div className="flex flex-row justify-center">
         <div className="mr-8">
-          <button
-            onClick={() => setLayerVisible(false)}
-            type="button"
-            style={layersVisible ? { color } : {}}
-          >
-            Design
-          </button>
-        </div>
-        <div className="ml-8">
           <button
             onClick={() => setLayerVisible(true)}
             type="button"
             style={layersVisible ? {} : { color }}
           >
             Layers
+          </button>
+        </div>
+        <div className="ml-8">
+          <button
+            onClick={() => setLayerVisible(false)}
+            type="button"
+            style={layersVisible ? { color } : {}}
+          >
+            Assets
           </button>
         </div>
       </div>

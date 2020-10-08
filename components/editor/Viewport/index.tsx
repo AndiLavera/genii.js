@@ -8,8 +8,8 @@ import {
   DialogContent,
   DialogActions,
 } from '@material-ui/core';
-import { Toolbox } from './Toolbox';
-import { Sidebar } from './Sidebar';
+import { RightSidebar } from './Sidebars/RightSidebar';
+import { LeftSidebar } from './Sidebars/LeftSidebar';
 import Header from './Header';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -96,7 +96,9 @@ export const Viewport: React.FC = ({ children }) => {
           },
         ])}
       >
-        <Toolbox />
+
+        <LeftSidebar />
+
         <div className="flex-1 h-full">
           <div className="w-full h-full">
             <div
@@ -122,7 +124,9 @@ export const Viewport: React.FC = ({ children }) => {
             </div>
           </div>
         </div>
-        <Sidebar />
+
+        <RightSidebar />
+
       </div>
     </div>
   );
