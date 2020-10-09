@@ -44,14 +44,14 @@ export const LeftSidebar = () => {
         </div>
       </div>
 
-      <div className="flex flex-col h-full  overflow-auto">
+      <div className="flex flex-col h-full overflow-auto">
         <SidebarItem
           icon={LayerIcon}
           title="Layers"
           height="full"
           visible={layersVisible}
         >
-          <div className="">
+          <div>
             <Layers expandRootOnLoad />
           </div>
         </SidebarItem>

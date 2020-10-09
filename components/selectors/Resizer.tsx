@@ -38,7 +38,7 @@ const Indicators = styled.div<{ bound?: 'row' | 'column' }>`
     border: 2px solid #36a9e0;
     &:nth-child(1) {
       ${(props) => (props.bound
-    ? props.bound == 'row'
+    ? props.bound === 'row'
       ? `
                 left: 50%;
                 top: -5px;
@@ -61,7 +61,7 @@ const Indicators = styled.div<{ bound?: 'row' | 'column' }>`
     }
     &:nth-child(3) {
       ${(props) => (props.bound
-    ? props.bound == 'row'
+    ? props.bound === 'row'
       ? `
                 left: 50%;
                 bottom: -5px;
@@ -112,8 +112,6 @@ export const Resizer = ({ propKey, children, ...props }: any) => {
     isRootNode: query.node(id).isRoot(),
   }));
 
-  // const { parentWidth, parentHeight } = useEditor((state) => ({ parentWidth: parent && state.nodes[parent].data.props.width, parentHeight: parent && state.nodes[parent].data.props.height }))
-
   const resizable = useRef<Resizable>(null);
   const isResizing = useRef<Boolean>(false);
   const editingDimensions = useRef<any>(null);
@@ -159,14 +157,14 @@ export const Resizer = ({ propKey, children, ...props }: any) => {
 
   const getUpdatedDimensions = (width, height) => {
     const dom = resizable.current.resizable;
-    if (!dom) return;
+    if (!dom) return { width: undefined, length: undefined };
 
-    const currentWidth = parseInt(editingDimensions.current.width);
-    const currentHeight = parseInt(editingDimensions.current.height);
+    const currentWidth = parseInt(editingDimensions.current.width, 10);
+    const currentHeight = parseInt(editingDimensions.current.height, 10);
 
     return {
-      width: currentWidth + parseInt(width),
-      height: currentHeight + parseInt(height),
+      width: currentWidth + parseInt(width, 10),
+      height: currentHeight + parseInt(height, 10),
     };
   };
 
@@ -226,6 +224,7 @@ export const Resizer = ({ propKey, children, ...props }: any) => {
       onResize={(_, __, ___, d) => {
         const dom = resizable.current.resizable;
         let { width, height }: any = getUpdatedDimensions(d.width, d.height);
+
         if (isPercentage(nodeWidth)) {
           width = `${pxToPercent(width, getElementDimensions(dom.parentElement).width)
           }%`;
@@ -238,11 +237,11 @@ export const Resizer = ({ propKey, children, ...props }: any) => {
           )}%`;
         } else height = `${height}px`;
 
-        if (isPercentage(width) && dom.parentElement.style.width == 'auto') {
+        if (isPercentage(width) && dom.parentElement.style.width === 'auto') {
           width = `${editingDimensions.current.width + d.width}px`;
         }
 
-        if (isPercentage(height) && dom.parentElement.style.height == 'auto') {
+        if (isPercentage(height) && dom.parentElement.style.height === 'auto') {
           height = `${editingDimensions.current.height + d.height}px`;
         }
 
@@ -259,7 +258,7 @@ export const Resizer = ({ propKey, children, ...props }: any) => {
     >
       {children}
       {active && (
-        <Indicators bound={fillSpace == 'yes' ? parentDirection : false}>
+        <Indicators bound={fillSpace === 'yes' ? parentDirection : false}>
           <span />
           <span />
           <span />

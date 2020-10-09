@@ -6,7 +6,7 @@ const SidebarItemDiv = styled.div<{ visible?: boolean; height?: string }>`
   height: ${(props) => (props.visible && props.height && props.height !== 'full'
     ? `${props.height}`
     : '0px')};
-  flex: ${(props) => (props.visible && props.height && props.height == 'full' ? `1` : 'unset')};
+  flex: ${(props) => (props.visible && props.height && props.height === 'full' ? `1` : 'unset')};
   color: #545454;
   visibility: ${(props) => (props.visible ? 'visible' : 'hidden')}
 `;
@@ -42,7 +42,7 @@ export const SidebarItem: React.FC<SidebarItem> = ({
   height,
   onChange,
 }) => (
-  <SidebarItemDiv visible={visible} height={height} className="flex flex-col">
+  <SidebarItemDiv visible={visible} height={height} className="flex flex-col" style={visible ? {} : { display: 'none' }}>
     <HeaderDiv
       onClick={() => {
         if (onChange) onChange(!visible);
@@ -59,8 +59,9 @@ export const SidebarItem: React.FC<SidebarItem> = ({
         <Arrow />
       </Chevron>
     </HeaderDiv>
-    {visible ? (
+    <div className="w-full flex-1">{children}</div>
+    {/* {visible ? (
       <div className="w-full flex-1">{children}</div>
-    ) : null}
+    ) : null} */}
   </SidebarItemDiv>
 );

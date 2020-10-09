@@ -4,6 +4,8 @@ import { Tooltip, Snackbar } from '@material-ui/core';
 import styled from 'styled-components';
 import cx from 'classnames';
 
+import { FaSortDown } from 'react-icons/fa';
+
 import { Container } from '../../selectors/Container';
 import Typography from '../../selectors/Typography';
 import Button from '../../selectors/Button';
@@ -13,7 +15,6 @@ import Customize from '../../../public/icons/customize.svg';
 import SquareSvg from '../../../public/icons/toolbox/rectangle.svg';
 import TypeSvg from '../../../public/icons/toolbox/text.svg';
 import ButtonSvg from '../../../public/icons/toolbox/button.svg';
-import DownArrow from '../../../public/icons/toolbox/down-arrow.svg';
 import UndoSvg from '../../../public/icons/toolbox/undo.svg';
 import RedoSvg from '../../../public/icons/toolbox/redo.svg';
 
@@ -34,14 +35,18 @@ const Item = styled.a<{ disabled?: boolean; move?: boolean }>`
   `}
 `;
 
-const Menu = styled.a<{ disabled?: boolean; move?: boolean }>`
+const IconDiv = styled.div<{ disabled?: boolean; move?: boolean }>`
+  width: 1em;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+
   svg {
-    margin-left: 2px;
-    width: 10px;
-    height: 10px;
-    fill: #fff;
+    width: 0.75em;
+    height: 0.75em;
     position: absolute;
-    bottom: 20%;
+    bottom: 30%;
+    fill: #fff;
   }
 `;
 
@@ -100,9 +105,9 @@ const Header = () => {
       enabled={enabled}
       className="header bg-dark-gray-1 text-white transition w-full"
     >
-      <div className="items-center flex w-full px-16">
-        <div className="flex flex-row flex-1">
-          <div className="flex flex-row text-center p-2">
+      <div className="items-center flex w-full h-full ml-2">
+        <div className="flex flex-row flex-1 h-full items-center">
+          <div className="flex flex-row text-center h-full items-center mr-2">
             <div
               ref={(ref) => create(
                 ref,
@@ -126,12 +131,12 @@ const Header = () => {
                 </Item>
               </Tooltip>
             </div>
-            <Menu>
-              <DownArrow />
-            </Menu>
+            <IconDiv>
+              <FaSortDown />
+            </IconDiv>
           </div>
 
-          <div className="flex flex-row text-center p-2">
+          <div className="flex flex-row text-center mr-2">
             <div ref={(ref) => create(ref, <Typography />)}>
               <Tooltip title="Text" placement="right">
                 <Item className="cursor-pointer" move>
@@ -139,12 +144,12 @@ const Header = () => {
                 </Item>
               </Tooltip>
             </div>
-            <Menu>
-              <DownArrow />
-            </Menu>
+            <IconDiv>
+              <FaSortDown />
+            </IconDiv>
           </div>
 
-          <div className="flex flex-row text-center p-2">
+          <div className="flex flex-row text-center mr-2">
             <div ref={(ref) => create(ref, <Button />)}>
               <Tooltip title="Button" placement="right">
                 <Item className="cursor-pointer" move>
@@ -152,13 +157,13 @@ const Header = () => {
                 </Item>
               </Tooltip>
             </div>
-            <Menu>
-              <DownArrow />
-            </Menu>
+            <IconDiv>
+              <FaSortDown />
+            </IconDiv>
           </div>
         </div>
 
-        <div className="flex flex-row text-center p-2">
+        <div className="flex flex-row text-center p-2 h-full items-center">
           <div className="pr-2">
             <Tooltip title="Undo" placement="right">
               <Item
@@ -170,6 +175,7 @@ const Header = () => {
               </Item>
             </Tooltip>
           </div>
+
           <div className="pr-2">
             <Tooltip title="Redo" placement="right">
               <Item

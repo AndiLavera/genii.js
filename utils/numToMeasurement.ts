@@ -7,9 +7,10 @@ export const percentToPx = (value: any, comparativeValue: number) => {
 };
 
 export const pxToPercent = (value: any, comparativeValue: number) => {
-  // if ( typeof value == 'number' ) return;
   const val = (Math.abs(value) / comparativeValue) * 100;
-  if (value < 0) return -1 * val;
+
+  if (value < 0) { return -1 * val; }
+
   return Math.round(val);
 };
 

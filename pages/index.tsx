@@ -5,14 +5,10 @@ import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 // import lz from 'lzutf8';
 import { Container } from '../components/selectors';
-import { Custom1, OnlyButtons } from '../components/selectors/Custom1';
-import { Custom2, Custom2VideoDrop } from '../components/selectors/Custom2';
-import { Custom3, Custom3BtnDrop } from '../components/selectors/Custom3';
 import Button from '../components/selectors/Button';
 import Typography from '../components/selectors/Typography';
 import { Video } from '../components/selectors/Video';
 import { Viewport, RenderNode } from '../components/editor';
-import '../styles/app.css';
 
 const theme = createMuiTheme({
   typography: {
@@ -48,12 +44,6 @@ function App() {
           resolver={{
             Container,
             Typography,
-            Custom1,
-            Custom2,
-            Custom2VideoDrop,
-            Custom3,
-            Custom3BtnDrop,
-            OnlyButtons,
             Button,
             Video,
           }}
