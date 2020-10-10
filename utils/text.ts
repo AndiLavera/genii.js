@@ -2,7 +2,9 @@ export const capitalize = (text: string) => text[0].toUpperCase() + text.substr(
 export const weightDescription = (weight: number) => {
   if (weight === 400) {
     return 'Regular';
-  } if (weight === 500) {
+  }
+
+  if (weight === 500) {
     return 'Medium';
   }
 

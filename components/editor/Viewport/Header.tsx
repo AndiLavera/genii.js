@@ -9,6 +9,8 @@ import { FaSortDown } from 'react-icons/fa';
 import { Container } from '../../selectors/Container';
 import Typography from '../../selectors/Typography';
 import Button from '../../selectors/Button';
+import Grid from '../../selectors/Grid';
+import Card from '../../selectors/Card';
 
 import Checkmark from '../../../public/icons/check.svg';
 import Customize from '../../../public/icons/customize.svg';
@@ -137,8 +139,21 @@ const Header = () => {
           </div>
 
           <div className="flex flex-row text-center mr-2">
+            <div ref={(ref) => create(ref, <Element canvas is={Grid} />)}>
+              <Tooltip title="Grid" placement="bottom">
+                <Item className="cursor-pointer" move>
+                  <SquareSvg />
+                </Item>
+              </Tooltip>
+            </div>
+            <IconDiv>
+              <FaSortDown />
+            </IconDiv>
+          </div>
+
+          <div className="flex flex-row text-center mr-2">
             <div ref={(ref) => create(ref, <Typography />)}>
-              <Tooltip title="Text" placement="right">
+              <Tooltip title="Text" placement="bottom">
                 <Item className="cursor-pointer" move>
                   <TypeSvg />
                 </Item>
@@ -151,7 +166,20 @@ const Header = () => {
 
           <div className="flex flex-row text-center mr-2">
             <div ref={(ref) => create(ref, <Button />)}>
-              <Tooltip title="Button" placement="right">
+              <Tooltip title="Button" placement="bottom">
+                <Item className="cursor-pointer" move>
+                  <ButtonSvg />
+                </Item>
+              </Tooltip>
+            </div>
+            <IconDiv>
+              <FaSortDown />
+            </IconDiv>
+          </div>
+
+          <div className="flex flex-row text-center mr-2">
+            <div ref={(ref) => create(ref, <Card />)}>
+              <Tooltip title="Card" placement="bottom">
                 <Item className="cursor-pointer" move>
                   <ButtonSvg />
                 </Item>

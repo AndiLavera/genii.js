@@ -7,6 +7,8 @@ import { ThemeProvider } from '@material-ui/styles';
 import { Container } from '../components/selectors';
 import Button from '../components/selectors/Button';
 import Typography from '../components/selectors/Typography';
+import Grid from '../components/selectors/Grid';
+import Card from '../components/selectors/Card';
 import { Video } from '../components/selectors/Video';
 import { Viewport, RenderNode } from '../components/editor';
 
@@ -46,6 +48,8 @@ function App() {
             Typography,
             Button,
             Video,
+            Grid,
+            Card,
           }}
           enabled={enabled}
           onRender={RenderNode}
