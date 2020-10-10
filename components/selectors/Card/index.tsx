@@ -8,9 +8,8 @@ import Typography from '../Typography';
 import Button from '../Button';
 
 export const CardTop = ({ children }) => {
-  const {
-    connectors: { connect },
-  } = useNode();
+  const { connectors: { connect } } = useNode();
+
   return (
     <div
       ref={connect}
